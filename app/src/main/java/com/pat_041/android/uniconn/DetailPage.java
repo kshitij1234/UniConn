@@ -44,9 +44,10 @@ public class DetailPage extends AppCompatActivity {
         TextView collegeNameTextView = (TextView)findViewById(R.id.author);
         TextView collegeAddressTextView = (TextView)findViewById(R.id.quote);
         TextView collegeWebsite = (TextView)findViewById(R.id.collge_website);
-        String address = mCollege.getCollegeName()+"\n";
-        address+=(mCollege.getAddress()+".PIN - "+mCollege.getPincode()+"\n");
+        String nameCollege = mCollege.getCollegeName()+"\n";
+        String address =(mCollege.getAddress()+".PIN - "+mCollege.getPincode()+"\n");
         address+=(mCollege.getCity()+" , "+mCollege.getDistrict()+" , "+mCollege.getState()+"\n");
+        collegeNameTextView.setText(nameCollege);
         collegeAddressTextView.setText(address);
         collegeWebsite.setText(mCollege.getWebsite());
     }
