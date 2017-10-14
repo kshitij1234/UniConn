@@ -13,43 +13,43 @@ public class College extends SuperObjects {
     public int id;
 
     public int ranking;
-
+    //1
     public String collegeName;
-
+    //1
     public String address;
-
+    //1
     public String city;
-
+    //1
     public String state;
-
+    //1
     public String est_date;
-
+    //1
     public String district;
-
+    //1
     public String pincode;
-
+    //1
     public String website;
-
+    //Not Listed
     public String area;
-
+    //Not Listed
     public String affiliate;
-
+    //In Map
     public String latitute;
-
+    //In Map
     public String longitude;
-
+    //Not Listed
     public String management;
-
+    //4 - Need More Info On Hostels
     public boolean hostelAvailable;
-
+    //2
     public boolean scholarshipAvailable;
-
+    //2
     public boolean fellowShipAvailable;
-
+    //2
     public ArrayList<String> dept;
-
+    //3
     public ArrayList<String> course_level;
-
+    //3
     public ArrayList<String> Infrastructure;
 
     public College(int id) {
