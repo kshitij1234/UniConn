@@ -58,7 +58,7 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         Log.d(TAG, "#" + position);
-        holder.bind(position);
+        //holder.bind(position);
     }
 
     @Override

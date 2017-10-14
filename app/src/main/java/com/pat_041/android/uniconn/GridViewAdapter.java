@@ -3,6 +3,7 @@ package com.pat_041.android.uniconn;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,20 +40,22 @@ public class GridViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         //get the item corresponding to your position
+        Log.v("Inside Grid View : ","I Have Entered the Grid View");
         LinearLayout gridLinearLayout = (LinearLayout) (convertView == null
                 ? LayoutInflater.from(mContext).inflate(R.layout.linearlayout_grid, parent, false)
                 : convertView);
 
         ((ImageView)gridLinearLayout.findViewById(R.id.image_grid)).setImageResource(mThumbIds[position]);
-        ((TextView)gridLinearLayout.findViewById(R.id.grid_text)).setText(""+mTextIds[position]);
+        ((TextView)gridLinearLayout.findViewById(R.id.grid_text)).setText(""+mTextIds[position].toString());
+        Log.v("Inside Grid View : ","I am Returning from Grid View : "+mTextIds[position].toString());
         return gridLinearLayout;
     }
 
-    public Integer[] mTextIds = {
+    public Integer[] mThumbIds = {
             R.drawable.pic_university, R.drawable.pic_institute,
             R.drawable.pic_events,R.drawable.pic_fellow
     };
-    public Integer[] mThumbIds = {
+    public Integer[] mTextIds = {
             R.string.grid_univ_text,R.string.grid_inst_text,
             R.string.grid_event_text,R.string.grid_fellow_text
     };
