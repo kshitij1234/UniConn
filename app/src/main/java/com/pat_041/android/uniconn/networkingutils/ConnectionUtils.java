@@ -3,6 +3,9 @@ package com.pat_041.android.uniconn.networkingutils;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,12 +29,12 @@ public class ConnectionUtils {
         return url;
     }
 
-    public static String makeConnection(String s){
+    public static JSONObject makeConnection(String s){
 
         URL url = makeURL(s);
         String jsonResponse = null;
         if(url==null)
-            return jsonResponse;
+            return null;
 
         try{
             jsonResponse = makeHttpRequest(url);
@@ -39,8 +42,15 @@ public class ConnectionUtils {
             Log.e("ConnectionUtils","Unable to get data from url",e);
         }
 
-        return jsonResponse;
+        if(jsonResponse==null||jsonResponse.equals(""))
+            return null;
 
+        try {
+            return new JSONObject(jsonResponse);
+        } catch (JSONException e) {
+            Log.e("ConnectionUtils","Bad json response");
+        }
+        return null;
     }
 
     public static String makeHttpRequest(URL url)throws IOException{
