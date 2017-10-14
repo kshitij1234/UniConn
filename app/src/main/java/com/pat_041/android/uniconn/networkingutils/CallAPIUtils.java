@@ -1,6 +1,7 @@
 package com.pat_041.android.uniconn.networkingutils;
 
 import com.pat_041.android.uniconn.definitions.College;
+import com.pat_041.android.uniconn.definitions.SuperObjects;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,7 +75,7 @@ public class CallAPIUtils {
         return getStandAloneObjects(basicInformationOfCollegesUrl);
     }
 
-    public static ArrayList<College> getStandAloneObjects(int t,String value) throws JSONException {
+    public static ArrayList<College> getStandAloneObjects(int t, String value) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
         HashSet<College> hashSet = new HashSet<>();
         ArrayList<String> keys = new ArrayList<>(Arrays.asList("name","city","state","district","pin_code","website","year_of_establishment","longitude","latitude"));

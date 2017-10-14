@@ -14,6 +14,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActivityAdapter.ItemViewHolder>{
 
@@ -24,7 +25,7 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
     private int mNumberItems;
 
-    private ArrayList<SuperObjects> list;
+    private ArrayList<? extends SuperObjects> list;
 
     /**
      * The interface that receives onClick messages.
@@ -33,7 +34,7 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
         void onListItemClick(int clickedItemIndex);
     }
 
-    public SearchingActivityAdapter(int numberOfItems, ListItemClickListener listener, ArrayList<SuperObjects> l)
+    public SearchingActivityAdapter(int numberOfItems, ListItemClickListener listener, ArrayList<? extends SuperObjects> l)
     {
         list = l;
         mNumberItems = numberOfItems;
@@ -89,9 +90,15 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
         public void bind(int position) {
 
+            Random rand = new Random();
+            int r = rand.nextInt(255);
+            int g = rand.nextInt(255);
+            int b = rand.nextInt(255);
+            int randomColor = Color.rgb(r,g,b);
+
             SuperObjects object = list.get(position);
             TextDrawable drawable = TextDrawable.builder()
-                    .buildRoundRect(object.getHeading().toUpperCase().charAt(0)+"", Color.RED, 10); // radius in px
+                    .buildRoundRect(object.getHeading().toUpperCase().charAt(0)+"", randomColor, 10); // radius in px
             mImageView.setImageDrawable(drawable);
             heading.setText(object.getHeading());
             extra.setText(object.getExtra());
