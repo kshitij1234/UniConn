@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UniConn</string>
+    <string name="grid_event_text">Events</string>
+    <string name="grid_univ_text">Universities</string>
+    <string name="grid_inst_text">Standalone Institutes</string>
+    <string name="grid_fellow_text">Fellow</string>
 </resources>
