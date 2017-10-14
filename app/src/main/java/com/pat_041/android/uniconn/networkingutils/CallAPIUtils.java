@@ -17,22 +17,21 @@ public class CallAPIUtils {
 
     public static ArrayList<College> getStandAloneObjects(String url) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
-        JSONObject jsonObject=ConnectionUtils.makeConnection(url);
-        JSONArray jsonArray=null;
-        jsonArray=jsonObject.getJSONArray("records");
-        for(int i=0;i<jsonArray.length();i++)
-        {
-            JSONObject obj=null;
+        JSONObject jsonObject = ConnectionUtils.makeConnection(url);
+        JSONArray jsonArray = null;
+        jsonArray = jsonObject.getJSONArray("records");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = null;
             obj = jsonArray.getJSONObject(i);
             String name = obj.getString("name");
             int id = obj.getInt("id");
-            String address = obj.getString("address_line1")+" "+obj.getString("address_line2");
+            String address = obj.getString("address_line1") + " " + obj.getString("address_line2");
             String city = obj.getString("city");
             String state = obj.getString("state");
             String district = obj.getString("district");
             String pin_code = obj.getString("pin_code");
-            String website = obj.getString ("website");
-            String year_of_establishment = obj.getString ("year_of_establishment");
+            String website = obj.getString("website");
+            String year_of_establishment = obj.getString("year_of_establishment");
             String longitude = obj.getString("longitude");
             String latitude = obj.getString("latitude");
             String area = obj.getString("area");
@@ -49,6 +48,7 @@ public class CallAPIUtils {
             clg.setWebsite(website);
             clg.setLatitute(latitude);
             clg.setLongitude(longitude);
+            clg.setExtra(city,state);
             System.out.println(id);
             System.out.println(address);
             System.out.println(city);
@@ -64,16 +64,11 @@ public class CallAPIUtils {
         }
         return arrayList;
     }
-    public static ArrayList<College> getStandAloneObjectsByStateName(String stateName) throws JSONException {
+
+    public static ArrayList<College> getStandAloneObjects(String key, String value) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
         String basicInformationOfCollegesUrl = ApiCalls.BASIC_INFORMATION_OF_STANDALONE_URL;
-        basicInformationOfCollegesUrl+="&filters[state]="+stateName;
-        return getStandAloneObjects(basicInformationOfCollegesUrl);
-    }
-    public static ArrayList<College> getStandAloneObjectsByCityName(String cityName) throws JSONException {
-        ArrayList<College> arrayList = new ArrayList<College>();
-        String basicInformationOfCollegesUrl = ApiCalls.BASIC_INFORMATION_OF_STANDALONE_URL;
-        basicInformationOfCollegesUrl+="&filters[state]="+cityName;
+        basicInformationOfCollegesUrl += "&filters[" + key + "]=" + value;
         return getStandAloneObjects(basicInformationOfCollegesUrl);
     }
 }
