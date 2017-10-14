@@ -2,6 +2,7 @@ package com.pat_041.android.uniconn;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,11 +58,13 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
         return viewHolder;
 
+
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        Log.d(TAG, "#" + position);
+        //Log.d(TAG, "#" + position);
+
         holder.bind(position);
     }
 
@@ -99,13 +102,33 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
             int b = rand.nextInt(255);
             int randomColor = Color.rgb(r,g,b);
 
+
             SuperObjects object = list.get(position);
             TextDrawable drawable = TextDrawable.builder()
-                    .buildRoundRect(object.getHeading().toUpperCase().charAt(0)+"", randomColor, 10); // radius in px
+                    .buildRoundRect(object.getHeading().toUpperCase().charAt(0)+"", randomColor, 100); // radius in px
             mImageView.setImageDrawable(drawable);
             heading.setText(object.getHeading());
             extra.setText(object.getExtra());
 
         }
+
+
     }
+
+    public static class BackgroundItemDecoration extends RecyclerView.ItemDecoration {
+
+
+        public BackgroundItemDecoration() {
+
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            int position = parent.getChildAdapterPosition(view);
+            if(position%2==1)
+            view.setBackgroundColor(Color.rgb(235,235,235));
+        }
+    }
+
 }

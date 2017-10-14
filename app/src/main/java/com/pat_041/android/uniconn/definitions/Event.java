@@ -1,10 +1,12 @@
 package com.pat_041.android.uniconn.definitions;
 
+import java.io.Serializable;
+
 /**
  * Created by jaita on 14-Oct-17.
  */
 
-public class Event extends SuperObjects {
+public class Event extends SuperObjects implements Serializable{
 
     public int id;
 

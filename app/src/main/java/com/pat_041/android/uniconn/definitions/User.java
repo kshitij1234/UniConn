@@ -1,12 +1,16 @@
 package com.pat_041.android.uniconn.definitions;
 
+import java.io.Serializable;
+
 /**
  * Created by jaita on 14-Oct-17.
  */
 
-public class User {
+public class User implements Serializable{
 
     private int id;
+
+    private String uname;
 
     private  String name;
 
@@ -26,15 +30,42 @@ public class User {
 
     private String phone;
 
-    User() {}
+    public User() {}
 
     public User(int id) {
         this.id = id;
     }
 
-    public User(String name, String password) {
+    public User(String uname, String password) {
+        this.uname = uname;
+        this.password = password;
+    }
+
+    public User(int id, String uname, String name, String password, String address, String institute, String city, String state, String type, String email, String phone) {
+        this.id = id;
+        this.uname = uname;
         this.name = name;
         this.password = password;
+        this.address = address;
+        this.institute = institute;
+        this.city = city;
+        this.state = state;
+        this.type = type;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public User(String uname, String name, String password, String address, String institute, String city, String state, String type, String email, String phone) {
+        this.uname = uname;
+        this.name = name;
+        this.password = password;
+        this.address = address;
+        this.institute = institute;
+        this.city = city;
+        this.state = state;
+        this.type = type;
+        this.email = email;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -115,5 +146,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 }
