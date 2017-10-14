@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:layout_gravity="center"
     android:id="@+id/grid_linear_layout">
     <ImageView
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
         android:padding="10dp"
         android:text="Event"
         android:textSize="15sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_gravity="center_horizontal"/>
+        android:textColor="#000077"
+        android:background="#FFFFFF"
+        android:gravity="center_horizontal"/>
 </LinearLayout>
