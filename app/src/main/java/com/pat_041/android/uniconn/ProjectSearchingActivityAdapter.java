@@ -1,9 +1,14 @@
 package com.pat_041.android.uniconn;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import com.pat_041.android.uniconn.definitions.Project;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
@@ -33,8 +38,17 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Projec
     }
 
     @Override
-    public ProjectSearchingActivityAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public ProjectSearchingActivityAdapter.ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        Context context = viewGroup.getContext();
+        int layout = R.layout.project_list_item;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        boolean shouldAttachToParentImmediately;
+        shouldAttachToParentImmediately = false;
+
+        View view = inflater.inflate(layout, viewGroup, shouldAttachToParentImmediately);
+        ItemViewHolder viewHolder = new ItemViewHolder(view);
+
+        return viewHolder;
     }
 
     @Override
@@ -57,8 +71,16 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Projec
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+
+        CircleImageView image;
+        TextView heading;
+        TextView tag;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
+            image = (CircleImageView) itemView.findViewById(R.id.project_image);
+            heading = (TextView) itemView.findViewById(R.id.project_heading);
+            tag = (TextView) itemView.findViewById(R.id.project_tag);
         }
 
         @Override
@@ -69,6 +91,12 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Projec
 
 
         public void bind(int position) {
+
+            Project p = list.get(position);
+            heading.setText(p.getName());
+            tag.setText(p.getTag());
+
+            // need to use project_image later
 
         }
     }

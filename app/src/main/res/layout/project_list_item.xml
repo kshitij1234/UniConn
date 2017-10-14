@@ -1,39 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-
     >
 
-    <ImageView android:layout_width="60dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/project_image"
+        android:layout_width="60dp"
         android:layout_height="60dp"
-
-        android:id="@+id/list_image_view"
-        android:layout_gravity="left"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/user_image"
+        app:border_color="#b2dfee"
+        app:border_width="1dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:paddingLeft="16dp"
+        android:paddingLeft="32dp"
 
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/list_heading"
+            android:id="@+id/project_heading"
             android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:text="Course Management System"
+            android:layout_gravity="center_horizontal"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/list_extra"
+            android:id="@+id/project_tag"
             android:textSize="14sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            tools:text="Java"
+            android:layout_gravity="center_horizontal"
+            />
     </LinearLayout>
 
 </LinearLayout>
