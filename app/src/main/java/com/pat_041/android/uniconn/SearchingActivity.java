@@ -72,7 +72,8 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         mAdapter = new SearchingActivityAdapter(this,list);
 
         recyclerView.setAdapter(mAdapter);
-
+        SearchingActivityAdapter.BackgroundItemDecoration decoration = new SearchingActivityAdapter.BackgroundItemDecoration();
+        recyclerView.addItemDecoration(decoration);
 
         collegeCallbacks = new CollegeCallbacks(this,getLoaderManager());
     }
@@ -201,6 +202,51 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
         @Override
         public Loader<List<College>> onCreateLoader(int id, Bundle args) {
+            System.out.println("inside oncreateloader");
+            switch (lsearchType) {
+                case SearchCaseConstants.NORMAL_SEARCH:
+                    System.out.println("eloader");
+                    CollegeLoader c =  new CollegeLoader(context, lsearchQuery, null, SearchCaseConstants.NORMAL_SEARCH);
+                    System.out.println("outside coleddd");
+                    return c;
+                case SearchCaseConstants.PARAMETERIZED_SEARCH:
+                    return new CollegeLoader(context, lsearchQuery, lKey, SearchCaseConstants.PARAMETERIZED_SEARCH);
+
+            }
+            return null;
+        }
+
+
+
+        @Override
+        public void onLoadFinished(Loader<List<College>> loader, List<College> data) {
+            System.out.println("inside load finished");
+            list =(ArrayList<? extends SuperObjects>) data;
+            mAdapter.setList(list);
+
+        }
+
+        @Override
+        public void onLoaderReset(Loader<List<College>> loader) {
+            list.clear();
+            mAdapter.setList(new ArrayList<SuperObjects>());
+        }
+    }
+
+    private class EventCallbacks implements LoaderManager.LoaderCallbacks<List<College>> {
+
+        Context context;
+
+        public EventCallbacks(Context context, LoaderManager loaderManager) {
+            this.context = context;
+            loaderManager.initLoader(0, null, this);
+        }
+
+
+        @Override
+        public Loader<List<College>> onCreateLoader(int id, Bundle args) {
+            list.clear();
+            mAdapter.setList(new ArrayList<SuperObjects>());
             System.out.println("inside oncreateloader");
             switch (lsearchType) {
                 case SearchCaseConstants.NORMAL_SEARCH:
