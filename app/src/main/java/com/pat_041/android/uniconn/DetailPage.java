@@ -1,12 +1,17 @@
 package com.pat_041.android.uniconn;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.College;
+
+import java.util.Locale;
 
 
 /**
@@ -15,24 +20,23 @@ import com.pat_041.android.uniconn.definitions.College;
 
 public class DetailPage extends AppCompatActivity {
     College mCollege;
+    FloatingActionButton mButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
         Intent intent = getIntent();
-        /**************************************************************************************************
-         * See Through this code for Passing Classes into an Intent and For reading classes from an intent
-         * Set the name of the putExtra Object as CollegeObj
-        //To pass:
-        intent.putExtra("MyClass", obj);
-
-        // To retrieve object in second Activity
-        getIntent().getSerializableExtra("MyClass");
-         ***************************************************************************************************/
         mCollege = (College)getIntent().getSerializableExtra("CollegeObj");
         displayCollegeBasicInfo();
         //displayCollegeExtendedInfo();
         //displayCollegeHostelInfo();
+        mButton = (FloatingActionButton)findViewById(R.id.detail_map_button);
+        mButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                openMapIntent();
+            }
+        });
     }
     //Uncomment this Portion when you guys get the College Object
     //Block 1
@@ -40,9 +44,10 @@ public class DetailPage extends AppCompatActivity {
         TextView collegeNameTextView = (TextView)findViewById(R.id.author);
         TextView collegeAddressTextView = (TextView)findViewById(R.id.quote);
         TextView collegeWebsite = (TextView)findViewById(R.id.collge_website);
-        String address = mCollege.getCollegeName()+"\n";
-        address+=(mCollege.getAddress()+".PIN - "+mCollege.getPincode()+"\n");
+        String nameCollege = mCollege.getCollegeName()+"\n";
+        String address =(mCollege.getAddress()+".PIN - "+mCollege.getPincode()+"\n");
         address+=(mCollege.getCity()+" , "+mCollege.getDistrict()+" , "+mCollege.getState()+"\n");
+        collegeNameTextView.setText(nameCollege);
         collegeAddressTextView.setText(address);
         collegeWebsite.setText(mCollege.getWebsite());
     }
@@ -82,6 +87,14 @@ public class DetailPage extends AppCompatActivity {
     //Provide Hostel Infromation and then I can do something
     private void displayCollegeHostelInfo(){
 
+    }
+
+    public void openMapIntent() {
+        String uri = "http://maps.google.com/maps?q=loc:" + mCollege.getLatitute() + "," + mCollege.getLongitude() + " (" + mCollege.getAddress() + ")";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
 }

@@ -104,7 +104,7 @@ public class CallAPIUtils {
         return arrayList;
     }
 
-    public JSONObject loadJSONfromAsset(Context context) throws JSONException {
+    public static JSONObject loadJSONfromAsset(Context context) throws JSONException {
         String json = null;
         try {
             InputStream is = context.getAssets().open("events.json");
@@ -121,7 +121,7 @@ public class CallAPIUtils {
         return obj;
     }
 
-    public ArrayList<Event> getListOfEvents(Context context) throws JSONException {
+    public static ArrayList<Event> getListOfEvents(Context context) throws JSONException {
         JSONArray jsonArray = null;
         jsonArray = loadJSONfromAsset(context).getJSONArray("records");
         ArrayList<Event> arrayList = new ArrayList<>();
@@ -144,8 +144,8 @@ public class CallAPIUtils {
         return arrayList;
     }
 
-    public ArrayList<Event> getListOfEvents(Context context,String param) throws JSONException {
-        ArrayList<Event> arrayList = new ArrayList<>();
+    public static ArrayList<Event> getListOfEvents(Context context,String param) throws JSONException {
+        ArrayList<Event> arrayList ;
         ArrayList<Event> result = new ArrayList<>();
         arrayList = getListOfEvents(context);
             for (Event e : arrayList){
@@ -156,7 +156,7 @@ public class CallAPIUtils {
             return result;
         }
 
-        public ArrayList<Event> getListOfEvents(Context context, String key, String value) throws JSONException {
+        public static ArrayList<Event> getListOfEvents(Context context, String key, String value) throws JSONException {
             ArrayList<Event> arrayList = new ArrayList<>();
             ArrayList<Event> result = new ArrayList<>();
             switch (key){
