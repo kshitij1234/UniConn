@@ -1,0 +1,81 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "name": "Launch & Workshop of Sikkim Open Government Data Portal",
+      "city": "Gangtok",
+      "state": "Sikkim",
+      "sdate": "13th June 2016",
+      "edate": "18th June 2016",
+      "info": "First Open Data Portal using OGD Platform Software as a Service (SaaS). During the workshop Sikkim State Data Portal was launched and Awareness/Training Sessions on Open Data Portal and its various features were organized. Kindly refer Schedule Tabs for detailed programme schedule.",
+      "img": "https://event.data.gov.in/wp-content/uploads/2016/08/sikkim-Image-218x140.png",
+      "link": "https://event.data.gov.in/events/launch-workshop-of-sikkim-open-government-data-portal/"
+    },
+    {
+      "id": 2,
+      "name": "Data Driven Decision Making For CDO",
+      "city": "New Delhi",
+      "state": "",
+      "sdate": "7th January, 2016",
+      "edate": "7th January, 2016",
+      "info": "Open Data Government (OGD) Platform India is organizing a workshop on Data Driven Decision Making for Chief Data Officers (CDOs)",
+      "img": "https://event.data.gov.in/wp-content/uploads/2016/01/Data-Driven-Decision-Making-For-CDO-218x140.jpg",
+      "link": "https://event.data.gov.in/events/data-driven-decision-making-for-cdo"
+    },
+    {
+      "id": 3,
+      "name": "Workshop for Data Contributors of Open Data Government (OGD) Platform India",
+      "city": "New Delhi",
+      "state": "",
+      "sdate": "7th October 2015",
+      "edate": "8th October 2015",
+      "info": "Open Data Government (OGD) Platform India has organized a half day workshop for Data Contributors from various Ministries/Departments and Organizations on October 7 and 8, 2015",
+      "img": "https://event.data.gov.in/wp-content/uploads/2016/01/workshop-on-Data-Contributors-of-Open-Data-Government-OGD-218x140.jpg",
+      "link": "https://event.data.gov.in/events/workshop-for-data-contributors-of-open-data-government-ogd-platform-india/"
+    },
+    {
+      "id": 4,
+      "name": "Open Government Data-Workshop for Data Controllers",
+      "city": "New Delhi",
+      "state": "",
+      "sdate": " 22nd April, 2015 ",
+      "edate": " 22nd April, 2015 ",
+      "info": "The National Data Sharing and Accessibility Policy (NDSAP) has set a benchmark in enabling India to become one of the leading country with regard to Open Data Initiative across the world",
+      "img": "https://event.data.gov.in/wp-content/uploads/2016/02/Open-Government-Data-Workshop-for-Data-Collectors-218x140.jpg",
+      "link": "https://event.data.gov.in/events/open-government-data-workshop-for-data-controllers/"
+    },
+    {
+      "id": 5,
+      "name": "OpenGov Datahack",
+      "city": "New Delhi",
+      "state": "",
+      "sdate": "December 11, 2014",
+      "edate": "December 11, 2014",
+      "info": "India is one of the pioneering countries in embracing the Open Data Initiative with a robust and one of its kinds National Data Sharing and Accessibility Policy. In follow up to this initiative the National Conference on 'Open Data & Open API' was an ideal platform where stakeholders from government involved in Open Data value chain came together to exchange ideas and strengthen India's Open Data initiative and positioning worldwide. The conference will comprised of keynotes from global experts in the field, presentation on global models, panel discussions on Indian Open Data initiatives and the way forward. The conference also included deliberation on using Open Data as a development tool to balance technical, application and socio-economic issues. The conference will also focused on Open API policy in India",
+      "img": "https://event.data.gov.in/wp-content/uploads/2016/01/National-Conference-on-Open-Data-Open-API-218x140.jpg",
+      "link": "https://event.data.gov.in/events/national-conference-on-open-data-open-api/"
+    },
+    {
+      "id": 6,
+      "name": "Launch & Workshop of Sikkim Open Government Data Portal",
+      "city": "Banglore",
+      "state": "Karnataka",
+      "sdate": "18th June 2014",
+      "edate": "19th June 2014",
+      "info": "Code for Honor is Microsoft’s award for solution excellence by Indian companies that are less than 8 years old with fewer than 200 employees.In collaboration with NIC, the “Best Solution for Social Good using Open Government Data” award is an exclusive category within the Code for Honor contest that encourages creation of apps for Social Good using datasets available on this portal.",
+      "img": "https://event.data.gov.in/wp-content/uploads/2016/03/event-_-12-218x140.jpg",
+      "link": "https://event.data.gov.in/events/code-of-honor-awards-2014-2/"
+    },
+    {
+      "id": 7,
+      "name": "CMA Hackathon",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "sdate": " 15 December, 2013",
+      "edate": " 14 December, 2013",
+      "info": "Tamil Nadu's Commissionerate of Municipal Administration (CMA) is calling out Technology Geeks & Gurus from the state and particularly Chennai to participate in the first CMA Hackathon -Code for Urban Governance. Put on the thinking cap and build apps for innovation in Urban Governance ! Be a part of the change you want to see using Technology as the underlying force and make things happen within Municipality Administration.",
+      "img": "https://data.gov.in/sites/default/files/event-cma-hackathon.jpg",
+      "link": "https://data.gov.in/event/cma-hackathon"
+    }
+  ]
+}
