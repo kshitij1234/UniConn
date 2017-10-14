@@ -5,7 +5,11 @@ import android.content.res.AssetManager;
 
 import com.pat_041.android.uniconn.MainActivity;
 import com.pat_041.android.uniconn.definitions.College;
+
+import com.pat_041.android.uniconn.definitions.SuperObjects;
+
 import com.pat_041.android.uniconn.definitions.Event;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +31,7 @@ public class CallAPIUtils {
 
     public static ArrayList<College> getStandAloneObjects(String url) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
-        JSONObject jsonObject = ConnectionUtils.makeConnection(url);
+        JSONObject jsonObject = ConnectionUtils.makeConnection(url);System.out.println("jhjghjh"+jsonObject.toString());
         JSONArray jsonArray = null;
         jsonArray = jsonObject.getJSONArray("records");
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -82,12 +86,16 @@ public class CallAPIUtils {
         return getStandAloneObjects(basicInformationOfCollegesUrl);
     }
 
-    public static ArrayList<College> getStandAloneObjects(int t,String value) throws JSONException {
+    public static ArrayList<College> getStandAloneObjects(int t, String value) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
         HashSet<College> hashSet = new HashSet<>();
         ArrayList<String> keys = new ArrayList<>(Arrays.asList("name","city","state","district","pin_code","website","year_of_establishment","longitude","latitude"));
         for (String key: keys) {
-            hashSet.addAll(getStandAloneObjects(key,value));
+            try {
+                hashSet.addAll(getStandAloneObjects(key, value));
+            }catch (Exception e){
+                System.out.println("not working why:="+e);
+            }
         }
         for (College c : hashSet){
             if (c != null)
@@ -99,7 +107,7 @@ public class CallAPIUtils {
     public JSONObject loadJSONfromAsset(Context context) throws JSONException {
         String json = null;
         try {
-            InputStream is = context.getAssets().open("yourfilename.json");
+            InputStream is = context.getAssets().open("events.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
