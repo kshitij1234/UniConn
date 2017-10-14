@@ -12,6 +12,8 @@ public class College extends SuperObjects {
 
     public int id;
 
+    public int ranking;
+
     public String collegeName;
 
     public String address;
@@ -220,5 +222,13 @@ public class College extends SuperObjects {
 
     public void setExtra(String city, String state){
         this.extra = city+". "+state;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 }
