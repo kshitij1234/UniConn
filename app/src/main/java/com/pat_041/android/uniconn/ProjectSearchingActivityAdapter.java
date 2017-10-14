@@ -5,11 +5,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pat_041.android.uniconn.definitions.Project;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
 
 import java.util.ArrayList;
 
-public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<SearchingActivityAdapter.ItemViewHolder>{
+public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<ProjectSearchingActivityAdapter.ItemViewHolder>{
 
     private static final String TAG = SearchingActivityAdapter.class.getSimpleName();
 
@@ -32,12 +33,12 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Search
     }
 
     @Override
-    public SearchingActivityAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProjectSearchingActivityAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
     }
 
     @Override
-    public void onBindViewHolder(SearchingActivityAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(ProjectSearchingActivityAdapter.ItemViewHolder holder, int position) {
         //Log.d(TAG, "#" + position);
 
         holder.bind(position);
@@ -48,7 +49,7 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Search
         return list.size();
     }
 
-    public void setList(ArrayList<? extends SuperObjects> l)
+    public void setList(ArrayList<Project> l)
     {
         list = l;
         this.notifyDataSetChanged();
@@ -67,6 +68,9 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Search
         }
 
 
+        public void bind(int position) {
+
+        }
     }
 
 }

@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.pat_041.android.uniconn.definitions.Project;
+
 import java.util.ArrayList;
 
 public class ProjectSearchingActivity extends AppCompatActivity {
