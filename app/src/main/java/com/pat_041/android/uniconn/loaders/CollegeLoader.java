@@ -32,6 +32,7 @@ public class CollegeLoader extends AsyncTaskLoader<List<College>> {
 
         ArrayList<College> list = null;
 
+        System.out.println("Inside asynctask");
         // call function here according to case
         try {
             switch (searchCase) {
@@ -43,10 +44,17 @@ public class CollegeLoader extends AsyncTaskLoader<List<College>> {
                     break;
 
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.e("ResultsLoader","Unable to get list");
         }
 
         return list;
+    }
+
+    @Override
+    protected void onStartLoading() {
+
+        System.out.println("hello force loading");
+        forceLoad();
     }
 }

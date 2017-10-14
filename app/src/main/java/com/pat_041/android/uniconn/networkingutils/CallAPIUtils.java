@@ -20,7 +20,7 @@ public class CallAPIUtils {
 
     public static ArrayList<College> getStandAloneObjects(String url) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
-        JSONObject jsonObject = ConnectionUtils.makeConnection(url);
+        JSONObject jsonObject = ConnectionUtils.makeConnection(url);System.out.println("jhjghjh"+jsonObject.toString());
         JSONArray jsonArray = null;
         jsonArray = jsonObject.getJSONArray("records");
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -88,4 +88,5 @@ public class CallAPIUtils {
         }
         return arrayList;
     }
+
 }

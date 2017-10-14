@@ -23,8 +23,6 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
     final private ListItemClickListener mOnClickListener;
 
-    private int mNumberItems;
-
     private ArrayList<? extends SuperObjects> list;
 
     /**
@@ -34,11 +32,16 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
         void onListItemClick(int clickedItemIndex);
     }
 
-    public SearchingActivityAdapter(int numberOfItems, ListItemClickListener listener, ArrayList<? extends SuperObjects> l)
+    public SearchingActivityAdapter( ListItemClickListener listener, ArrayList<? extends SuperObjects> l)
     {
         list = l;
-        mNumberItems = numberOfItems;
         mOnClickListener = listener;
+    }
+
+    public void setList(ArrayList<? extends SuperObjects> l)
+    {
+        list = l;
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        return list.size();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
