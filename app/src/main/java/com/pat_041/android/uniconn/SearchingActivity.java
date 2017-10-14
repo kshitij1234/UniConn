@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -30,8 +31,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.College;
+import com.pat_041.android.uniconn.definitions.Event;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
 import com.pat_041.android.uniconn.loaders.CollegeLoader;
+import com.pat_041.android.uniconn.loaders.EventLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +54,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
     private RecyclerView recyclerView;
     private TextView mErrorView;
     CollegeCallbacks collegeCallbacks;
-
+    EventCallbacks eventCallbacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +78,16 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
         recyclerView.setAdapter(mAdapter);
         SearchingActivityAdapter.BackgroundItemDecoration decoration = new SearchingActivityAdapter.BackgroundItemDecoration();
-        recyclerView.addItemDecoration(decoration);
+        //recyclerView.addItemDecoration(decoration);
+
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(
+                recyclerView.getContext(),
+                layoutManager.getOrientation()
+        );
+        recyclerView.addItemDecoration(mDividerItemDecoration);
 
         collegeCallbacks = new CollegeCallbacks(this,getLoaderManager());
+        eventCallbacks = new EventCallbacks(this,getLoaderManager());
     }
     private void showJsonDataView() {
         // First, make sure the error is invisible
@@ -173,12 +183,13 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
         switch (id) {
             case 0:
-                System.out.println("inside case 0");
+                //System.out.println("inside case 0");
                 getLoaderManager().restartLoader(1,null,collegeCallbacks);
                 break;
-            case 1:
-
             case 2:
+                getLoaderManager().restartLoader(1,null,eventCallbacks);
+                break;
+            case 1:
 
             case 3:
 
@@ -192,12 +203,20 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
     public void onListItemClick(int clickedItemIndex) {
         // this will have an intent to go to the item specific activity based on value of id
 
+        Intent intent;
         switch(id)
         {
             case 0:
-                Intent intent  = new Intent(getApplicationContext(),DetailPage.class);
+                intent  = new Intent(getApplicationContext(),DetailPage.class);
                 intent.putExtra("CollegeObj",(College)list.get(clickedItemIndex));
                 startActivity(intent);
+                break;
+
+            case 2:
+                intent  = new Intent(getApplicationContext(),EventsDetail.class);
+                intent.putExtra("EventObj",(Event)list.get(clickedItemIndex));
+                startActivity(intent);
+                break;
         }
 
 
@@ -260,7 +279,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         }
     }
 
-    private class EventCallbacks implements LoaderManager.LoaderCallbacks<List<College>> {
+    private class EventCallbacks implements LoaderManager.LoaderCallbacks<List<Event>> {
 
         Context context;
 
@@ -271,18 +290,18 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
 
         @Override
-        public Loader<List<College>> onCreateLoader(int id, Bundle args) {
+        public Loader<List<Event>> onCreateLoader(int id, Bundle args) {
             list.clear();
             mAdapter.setList(new ArrayList<SuperObjects>());
             System.out.println("inside oncreateloader");
             switch (lsearchType) {
                 case SearchCaseConstants.NORMAL_SEARCH:
                     System.out.println("eloader");
-                    CollegeLoader c =  new CollegeLoader(context, lsearchQuery, null, SearchCaseConstants.NORMAL_SEARCH);
+                    EventLoader c =  new EventLoader(context, lsearchQuery, null, SearchCaseConstants.NORMAL_SEARCH);
                     System.out.println("outside coleddd");
                     return c;
                 case SearchCaseConstants.PARAMETERIZED_SEARCH:
-                    return new CollegeLoader(context, lsearchQuery, lKey, SearchCaseConstants.PARAMETERIZED_SEARCH);
+                    return new EventLoader(context, lsearchQuery, lKey, SearchCaseConstants.PARAMETERIZED_SEARCH);
 
             }
             return null;
@@ -291,7 +310,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
 
         @Override
-        public void onLoadFinished(Loader<List<College>> loader, List<College> data) {
+        public void onLoadFinished(Loader<List<Event>> loader, List<Event> data) {
             System.out.println("inside load finished");
             list =(ArrayList<? extends SuperObjects>) data;
             mAdapter.setList(list);
@@ -299,7 +318,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         }
 
         @Override
-        public void onLoaderReset(Loader<List<College>> loader) {
+        public void onLoaderReset(Loader<List<Event>> loader) {
             list.clear();
             mAdapter.setList(new ArrayList<SuperObjects>());
         }

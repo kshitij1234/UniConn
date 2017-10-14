@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchingActivity" android:parentActivityName=".MainActivity">
+        <activity android:name=".SearchingActivity" android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"></meta-data></activity>
         <activity android:name=".DetailPage"

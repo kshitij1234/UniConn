@@ -9,7 +9,8 @@
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
         android:visibility="visible"
-        tools:context="com.pat_041.android.uniconn.SearchingActivity">
+        tools:context="com.pat_041.android.uniconn.SearchingActivity"
+        >
     </android.support.v7.widget.RecyclerView>
     <TextView
         android:id="@+id/tv_error_message_display"
