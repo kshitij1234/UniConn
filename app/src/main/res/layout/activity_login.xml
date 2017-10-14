@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context = ".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp">
+
+
+        <TextView android:text = "@string/logintext"
+            android:layout_width="wrap_content"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/loginlabel"
+            android:textSize = "35sp"
+            android:layout_alignParentTop = "true"
+            android:layout_centerHorizontal = "true" />
+
+        <EditText
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/enterusername"
+            android:hint = "@string/usernamelabel"
+            android:focusable = "true"
+            android:layout_marginTop = "46dp"
+            android:layout_below = "@id/loginlabel"
+            android:layout_alignParentLeft = "true"
+            android:layout_alignParentStart = "true"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentEnd = "true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/enterpassword"
+            android:layout_below="@id/enterusername"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentEnd = "true"
+            android:hint="@string/passwordlabel" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="login"
+            android:id="@+id/loginbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/enterpassword"
+            android:layout_marginTop="24dp"/>
+
+    </RelativeLayout>
+
+</ScrollView>

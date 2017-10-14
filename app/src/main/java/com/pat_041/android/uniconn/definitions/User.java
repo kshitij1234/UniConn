@@ -1,10 +1,12 @@
 package com.pat_041.android.uniconn.definitions;
 
+import java.io.Serializable;
+
 /**
  * Created by jaita on 14-Oct-17.
  */
 
-public class User {
+public class User implements Serializable{
 
     private int id;
 
@@ -39,7 +41,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String uname, String name, String password, String address, String institute, String city, String state, String type, String email, String phone) {
+    public User(int id, String uname, String name, String password, String address, String city, String state, String type,String institute, String email, String phone) {
         this.id = id;
         this.uname = uname;
         this.name = name;
@@ -53,7 +55,7 @@ public class User {
         this.phone = phone;
     }
 
-    public User(String uname, String name, String password, String address, String institute, String city, String state, String type, String email, String phone) {
+    public User(String uname, String name, String password, String address, String city, String state, String type, String institute, String email, String phone) {
         this.uname = uname;
         this.name = name;
         this.password = password;
