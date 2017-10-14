@@ -45,7 +45,7 @@ public class CollegeLoader extends AsyncTaskLoader<List<College>> {
 
             }
         } catch (Exception e) {
-            Log.e("ResultsLoader","Unable to get list");
+            Log.e("CollegeLoader","Unable to get list");
         }
 
         return list;
