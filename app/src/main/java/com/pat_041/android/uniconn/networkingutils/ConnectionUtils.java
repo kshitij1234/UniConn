@@ -30,7 +30,6 @@ public class ConnectionUtils {
     }
 
     public static JSONObject makeConnection(String s){
- s = "https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=games";
         URL url = makeURL(s);
         String jsonResponse = null;
         if(url==null)

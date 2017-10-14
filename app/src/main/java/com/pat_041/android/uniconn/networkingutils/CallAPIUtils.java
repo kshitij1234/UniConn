@@ -91,7 +91,11 @@ public class CallAPIUtils {
         HashSet<College> hashSet = new HashSet<>();
         ArrayList<String> keys = new ArrayList<>(Arrays.asList("name","city","state","district","pin_code","website","year_of_establishment","longitude","latitude"));
         for (String key: keys) {
-            hashSet.addAll(getStandAloneObjects(key,value));
+            try {
+                hashSet.addAll(getStandAloneObjects(key, value));
+            }catch (Exception e){
+                System.out.println("not working why:="+e);
+            }
         }
         for (College c : hashSet){
             if (c != null)
