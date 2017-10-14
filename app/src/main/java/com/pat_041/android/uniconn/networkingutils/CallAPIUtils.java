@@ -1,14 +1,22 @@
 package com.pat_041.android.uniconn.networkingutils;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
+import com.pat_041.android.uniconn.MainActivity;
 import com.pat_041.android.uniconn.definitions.College;
+import com.pat_041.android.uniconn.definitions.Event;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 
 public class CallAPIUtils {
@@ -88,4 +96,42 @@ public class CallAPIUtils {
         return arrayList;
     }
 
+    public JSONObject loadJSONfromAsset(Context context) throws JSONException {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open("yourfilename.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        JSONObject obj = new JSONObject(json);
+        return obj;
+    }
+
+    public List<Event> getListOfEvents(Context context) throws JSONException {
+        JSONArray jsonArray = null;
+        jsonArray = loadJSONfromAsset(context).getJSONArray("records");
+        ArrayList<Event> arrayList = new ArrayList<>();
+        for (int i=0;i<jsonArray.length();i++){
+            Event event = new Event();
+            JSONObject obj = null;
+            obj = jsonArray.getJSONObject(i);
+            event.setName(obj.getString("name"));
+            event.setId(obj.getInt("id"));
+            event.setCity(obj.getString("city"));
+            event.setState(obj.getString("state"));
+            event.setSdate(obj.getString("sdate"));
+            event.setEdate(obj.getString("edate"));
+            event.setInfo(obj.getString("info"));
+            event.setImg(obj.getString("img"));
+            event.setLink(obj.getString("link"));
+            arrayList.add(event);
+        }
+        return arrayList;
+    }
 }
