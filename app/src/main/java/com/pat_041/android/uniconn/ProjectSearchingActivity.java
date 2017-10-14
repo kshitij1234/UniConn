@@ -1,11 +1,15 @@
 package com.pat_041.android.uniconn;
 
 import android.app.AlertDialog;
+import android.app.LoaderManager;
 import android.app.SearchManager;
 import android.content.DialogInterface;
+import android.content.Loader;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -17,10 +21,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.Project;
+import com.pat_041.android.uniconn.definitions.SuperObjects;
+import com.pat_041.android.uniconn.loaders.CollegeLoader;
+import com.pat_041.android.uniconn.loaders.ProjectLoader;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ProjectSearchingActivity extends AppCompatActivity {
+public class ProjectSearchingActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Project>>,ProjectSearchingActivityAdapter.ListItemClickListener{
 
 
     private ProgressBar mLoadingIndicator;
@@ -30,13 +38,40 @@ public class ProjectSearchingActivity extends AppCompatActivity {
     private ArrayList<Project> list;
     private RecyclerView recyclerView;
     private TextView mErrorView;
+    private ProjectSearchingActivityAdapter mAdapter;
 
-
+    private DatabaseHandler mdbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_searching);
+
+        mdbhelper = new DatabaseHandler(this);
+
+
+        mErrorView=(TextView)findViewById(R.id.error_message_display);
+        recyclerView = (RecyclerView) findViewById(R.id.project_recycler_view);
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setHasFixedSize(false);
+
+        list = new ArrayList<>();
+
+        mAdapter = new ProjectSearchingActivityAdapter(this,list);
+
+        recyclerView.setAdapter(mAdapter);
+
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(
+                recyclerView.getContext(),
+                layoutManager.getOrientation()
+        );
+        recyclerView.addItemDecoration(mDividerItemDecoration);
+
+
+        getLoaderManager().restartLoader(1,null,this);
     }
 
     @Override
@@ -119,4 +154,48 @@ public class ProjectSearchingActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public Loader<List<Project>> onCreateLoader(int id, Bundle args) {
+        return new ProjectLoader(this,null, null,mdbhelper);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<Project>> loader, List<Project> data) {
+        list=(ArrayList<Project>) data;
+        mAdapter.setList(list);
+        if(data==null)
+        {
+            showErrorView();
+        }
+        else
+        {
+            showJsonDataView();
+        }
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Project>> loader) {
+        list.clear();
+        mAdapter.setList(new ArrayList<Project>());
+    }
+
+    private void showJsonDataView() {
+        // First, make sure the error is invisible
+        mErrorView.setVisibility(View.INVISIBLE);
+        // Then, make sure the JSON data is visible
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+    private void showErrorView() {
+        // First, make sure the error is invisible
+        mErrorView.setVisibility(View.VISIBLE);
+        // Then, make sure the JSON data is visible
+        recyclerView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        // create intent for next activity
+    }
 }
