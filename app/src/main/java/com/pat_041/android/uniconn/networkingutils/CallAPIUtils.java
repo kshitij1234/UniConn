@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.concurrent.SynchronousQueue;
 
 public class CallAPIUtils {
@@ -70,5 +72,19 @@ public class CallAPIUtils {
         String basicInformationOfCollegesUrl = ApiCalls.BASIC_INFORMATION_OF_STANDALONE_URL;
         basicInformationOfCollegesUrl += "&filters[" + key + "]=" + value;
         return getStandAloneObjects(basicInformationOfCollegesUrl);
+    }
+
+    public static ArrayList<College> getStandAloneObjects(int t,String value) throws JSONException {
+        ArrayList<College> arrayList = new ArrayList<College>();
+        HashSet<College> hashSet = new HashSet<>();
+        ArrayList<String> keys = new ArrayList<>(Arrays.asList("name","city","state","district","pin_code","website","year_of_establishment","longitude","latitude"));
+        for (String key: keys) {
+            hashSet.addAll(getStandAloneObjects(key,value));
+        }
+        for (College c : hashSet){
+            if (c != null)
+                arrayList.add(c);
+        }
+        return arrayList;
     }
 }
