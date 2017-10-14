@@ -68,17 +68,33 @@
                         android:id="@+id/author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text = "Hello World"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                        android:text = "College Name"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                     <TextView
                         android:id="@+id/quote"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text = "Hello World of Android"
-                        android:textSize="40dp"
-                        />
+                        android:text = "College Address"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/collge_city_state"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text = "College City,College State"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/collge_website"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text = "College Website"
+                        android:textSize="15dp"
+                        android:textColor="#1122FF"/>
 
                 </LinearLayout>
 
