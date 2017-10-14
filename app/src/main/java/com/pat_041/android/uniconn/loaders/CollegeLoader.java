@@ -44,7 +44,7 @@ public class CollegeLoader extends AsyncTaskLoader<List<College>> {
                     break;
 
             }
-        } catch (Exception e) {
+        } catch (JSONException e) {
             Log.e("CollegeLoader","Unable to get list");
         }
 

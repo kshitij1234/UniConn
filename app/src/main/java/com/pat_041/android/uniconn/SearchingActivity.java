@@ -131,6 +131,8 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
                             String parameter=parameterView.getText().toString();
                             String value=valueView.getText().toString();
                             // Add searching over here
+                            lKey = parameter;
+                            searchQuery(value,SearchCaseConstants.PARAMETERIZED_SEARCH);
                             System.out.println(parameter);
                             System.out.println(value);
                             dialog.cancel();
