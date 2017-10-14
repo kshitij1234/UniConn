@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/grid_linear_layout">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="center"
+        android:id="@+id/image_grid"
+        android:src="@drawable/pic_events"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/grid_text"
+        android:padding="10dp"
+        android:text="Event"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
