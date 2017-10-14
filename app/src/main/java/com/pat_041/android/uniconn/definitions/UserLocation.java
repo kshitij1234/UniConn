@@ -73,8 +73,8 @@ public class UserLocation implements LocationListener {
         Geocoder geoCoder = new Geocoder(mContext, Locale.getDefault());
         try {
             List<Address> address = geoCoder.getFromLocation(lat, lng, 1);
-            String stateName = address.get(0).getAddressLine(1);
-            Log.v("state name",stateName);
+            String stateName = address.get(0).getAddressLine(0);
+            Log.v("state name",""+stateName);
             userLongitude = String.valueOf(lng);
             userLatitude = String.valueOf(lat);
             userAddress = stateName;
