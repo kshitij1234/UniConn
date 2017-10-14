@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:text = "College Name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textSize = "40dp"/>
+                        android:textSize = "30dp"/>
 
                     <TextView
                         android:id="@+id/quote"
@@ -193,7 +193,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/card_margin"
                 android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
+                android:layout_marginRight="@dimen/card_margin"
+                android:paddingBottom="40dp">
 
                 <LinearLayout
                     style="@style/Widget.CardContent"
@@ -204,7 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/article_detail_hostel"
-                        android:textSize="40dp"
+                        android:textSize="30dp"
                         android:textStyle="bold"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
@@ -227,9 +228,11 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_anchor="@id/appbar"
+        android:id="@+id/detail_map_button"
         app:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/ic_pin_drop_black_24dp"
         android:layout_margin="@dimen/fab_margin"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:onClick="openMap"/>
 
 </android.support.design.widget.CoordinatorLayout>

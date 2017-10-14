@@ -26,6 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.College;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
@@ -37,7 +39,7 @@ import java.util.List;
 public class SearchingActivity extends AppCompatActivity implements SearchingActivityAdapter.ListItemClickListener {
 
     private int id;
-
+    private ProgressBar mLoadingIndicator;
     private String lsearchQuery;
     private int lsearchType;
     private String lKey;
@@ -47,7 +49,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
     private SearchingActivityAdapter mAdapter;
     private RecyclerView recyclerView;
-
+    private TextView mErrorView;
     CollegeCallbacks collegeCallbacks;
 
 
@@ -59,9 +61,9 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         Intent intent = getIntent();
 
         id = intent.getExtras().getInt("id");
-
+        mErrorView=(TextView)findViewById(R.id.tv_error_message_display);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -77,7 +79,18 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
         collegeCallbacks = new CollegeCallbacks(this,getLoaderManager());
     }
-
+    private void showJsonDataView() {
+        // First, make sure the error is invisible
+        mErrorView.setVisibility(View.INVISIBLE);
+        // Then, make sure the JSON data is visible
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+    private void showErrorView() {
+        // First, make sure the error is invisible
+        mErrorView.setVisibility(View.VISIBLE);
+        // Then, make sure the JSON data is visible
+        recyclerView.setVisibility(View.INVISIBLE);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
@@ -97,6 +110,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
                     return true;
                 System.out.println("inside submit");
                 // we have a query baby!!!!
+                query=(""+query.charAt(0)).toUpperCase()+query.substring(1).toLowerCase();
                 searchQuery(query, SearchCaseConstants.NORMAL_SEARCH);
                 searchView.clearFocus();
                 return true;
@@ -129,13 +143,14 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
                         public void onClick(DialogInterface dialog, int id) {
                             EditText parameterView=(EditText)v.findViewById(R.id.parameter);
                             EditText valueView= (EditText)v.findViewById(R.id.value);
-                            String parameter=parameterView.getText().toString();
+                            String parameter=parameterView.getText().toString().toLowerCase();
                             String value=valueView.getText().toString();
+                            value=(value.charAt(0)+"").toUpperCase()+value.substring(1).toLowerCase();
                             // Add searching over here
                             lKey = parameter;
                             searchQuery(value,SearchCaseConstants.PARAMETERIZED_SEARCH);
-                            System.out.println(parameter);
-                            System.out.println(value);
+                            //System.out.println(parameter);
+                            //System.out.println(value);
                             dialog.cancel();
                         }
                     })
@@ -197,7 +212,9 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         public CollegeCallbacks(Context context, LoaderManager loaderManager) {
             this.context = context;
             loaderManager.initLoader(0, null, this);
+
         }
+
 
 
         @Override
@@ -206,6 +223,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
             switch (lsearchType) {
                 case SearchCaseConstants.NORMAL_SEARCH:
                     System.out.println("eloader");
+                    mLoadingIndicator.setVisibility(View.VISIBLE);
                     CollegeLoader c =  new CollegeLoader(context, lsearchQuery, null, SearchCaseConstants.NORMAL_SEARCH);
                     System.out.println("outside coleddd");
                     return c;
@@ -223,6 +241,15 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
             System.out.println("inside load finished");
             list =(ArrayList<? extends SuperObjects>) data;
             mAdapter.setList(list);
+            if(data==null)
+            {
+                showErrorView();
+            }
+            else
+            {
+                showJsonDataView();
+            }
+            mLoadingIndicator.setVisibility(View.INVISIBLE);
 
         }
 
