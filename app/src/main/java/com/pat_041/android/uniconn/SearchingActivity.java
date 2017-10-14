@@ -1,6 +1,7 @@
 package com.pat_041.android.uniconn;
 
 import android.app.SearchManager;
+import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,10 +10,17 @@ import android.view.Menu;
 
 public class SearchingActivity extends AppCompatActivity {
 
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searching);
+
+        Intent intent  = getIntent();
+
+        id = intent.getExtras().getInt("id");
+
     }
 
     @Override
