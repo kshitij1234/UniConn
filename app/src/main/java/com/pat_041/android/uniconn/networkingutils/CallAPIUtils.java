@@ -14,18 +14,10 @@ public class CallAPIUtils {
     /* This class will have a bunch of overloaded methods to make use of ConnectionUtils to get json and return
     different objects based on the type of query - college, event etc.
      */
-    public static void main(String args[])
-    {
-        try {
-            getStandAloneObjects();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-    public static ArrayList<College> getStandAloneObjects() throws JSONException {
+
+    public static ArrayList<College> getStandAloneObjects(String url) throws JSONException {
         ArrayList<College> arrayList = new ArrayList<College>();
-        String basicInformationOfCollegesUrl = ApiCalls.BASIC_INFORMATION_OF_STANDALONE_URL;
-        JSONObject jsonObject=ConnectionUtils.makeConnection(basicInformationOfCollegesUrl);
+        JSONObject jsonObject=ConnectionUtils.makeConnection(url);
         JSONArray jsonArray=null;
         jsonArray=jsonObject.getJSONArray("records");
         for(int i=0;i<jsonArray.length();i++)
@@ -71,5 +63,17 @@ public class CallAPIUtils {
             arrayList.add(clg);
         }
         return arrayList;
+    }
+    public static ArrayList<College> getStandAloneObjectsByStateName(String stateName) throws JSONException {
+        ArrayList<College> arrayList = new ArrayList<College>();
+        String basicInformationOfCollegesUrl = ApiCalls.BASIC_INFORMATION_OF_STANDALONE_URL;
+        basicInformationOfCollegesUrl+="&filters[state]="+stateName;
+        return getStandAloneObjects(basicInformationOfCollegesUrl);
+    }
+    public static ArrayList<College> getStandAloneObjectsByCityName(String cityName) throws JSONException {
+        ArrayList<College> arrayList = new ArrayList<College>();
+        String basicInformationOfCollegesUrl = ApiCalls.BASIC_INFORMATION_OF_STANDALONE_URL;
+        basicInformationOfCollegesUrl+="&filters[state]="+cityName;
+        return getStandAloneObjects(basicInformationOfCollegesUrl);
     }
 }
