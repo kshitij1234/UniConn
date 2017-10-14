@@ -19,7 +19,7 @@ public class ConnectionUtils {
 
     private ConnectionUtils(){}
 
-    public static URL makeURL(String s){
+    private static URL makeURL(String s){
         URL url = null;
         try{
             url = new  URL(s);
@@ -53,7 +53,7 @@ public class ConnectionUtils {
         return null;
     }
 
-    public static String makeHttpRequest(URL url)throws IOException{
+    private static String makeHttpRequest(URL url)throws IOException{
 
         String json="";
 
