@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.pat_041.android.uniconn.definitions.SuperObjects;
 
 import java.util.ArrayList;
 
@@ -89,13 +90,11 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
         }
 
         public void bind(int position) {
-
+            
+            SuperObjects object = list.get(position);
             TextDrawable drawable = TextDrawable.builder()
-                    .buildRoundRect(object.getHeading(), Color.RED, 10); // radius in px
-
+                    .buildRoundRect(object.getHeading().toUpperCase().charAt(0)+"", Color.RED, 10); // radius in px
             mImageView.setImageDrawable(drawable);
-
-            SuperObject object = list.get(position);
             heading.setText(object.getHeading());
             extra.setText(object.getExtra());
 
