@@ -8,9 +8,11 @@ import java.util.ArrayList;
  * Main Object for  The returned University
  */
 
-public class College {
+public class College extends SuperObjects {
 
     public int id;
+
+    public int ranking;
 
     public String collegeName;
 
@@ -71,6 +73,7 @@ public class College {
 
     public void setCollegeName(String collegeName) {
         this.collegeName = collegeName;
+        this.heading = collegeName;
     }
 
     public String getAddress() {
@@ -215,5 +218,17 @@ public class College {
 
     public void setInfrastructure(ArrayList<String> infrastructure) {
         Infrastructure = infrastructure;
+    }
+
+    public void setExtra(String city, String state){
+        this.extra = city+". "+state;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 }
