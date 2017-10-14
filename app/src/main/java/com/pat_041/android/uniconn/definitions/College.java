@@ -2,13 +2,14 @@ package com.pat_041.android.uniconn.definitions;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Main Object for  The returned University
  */
 
-public class College extends SuperObjects {
+public class College extends SuperObjects implements Serializable{
 
     public int id;
 

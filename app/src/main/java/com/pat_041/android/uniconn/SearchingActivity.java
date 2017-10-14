@@ -175,6 +175,17 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
     @Override
     public void onListItemClick(int clickedItemIndex) {
         // this will have an intent to go to the item specific activity based on value of id
+
+        switch(id)
+        {
+            case 0:
+                Intent intent  = new Intent(getApplicationContext(),DetailPage.class);
+                intent.putExtra("CollegeObj",(College)list.get(clickedItemIndex));
+                startActivity(intent);
+        }
+
+
+
     }
 
 
@@ -209,12 +220,14 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         @Override
         public void onLoadFinished(Loader<List<College>> loader, List<College> data) {
             System.out.println("inside load finished");
-            mAdapter.setList((ArrayList<? extends SuperObjects>) data);
+            list =(ArrayList<? extends SuperObjects>) data;
+            mAdapter.setList(list);
 
         }
 
         @Override
         public void onLoaderReset(Loader<List<College>> loader) {
+            list.clear();
             mAdapter.setList(new ArrayList<SuperObjects>());
         }
     }

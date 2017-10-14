@@ -19,7 +19,7 @@ public class DetailPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
-        //Intent intent = getIntent();
+        Intent intent = getIntent();
         /**************************************************************************************************
          * See Through this code for Passing Classes into an Intent and For reading classes from an intent
          * Set the name of the putExtra Object as CollegeObj
@@ -29,11 +29,14 @@ public class DetailPage extends AppCompatActivity {
         // To retrieve object in second Activity
         getIntent().getSerializableExtra("MyClass");
          ***************************************************************************************************/
-        //mCollege = (College)getIntent().getSerializableExtra("CollegeObj");
+        mCollege = (College)getIntent().getSerializableExtra("CollegeObj");
+        displayCollegeBasicInfo();
+        //displayCollegeExtendedInfo();
+        //displayCollegeHostelInfo();
     }
     //Uncomment this Portion when you guys get the College Object
     //Block 1
-    /*private void displayCollegeBasicInfo(){
+    private void displayCollegeBasicInfo(){
         TextView collegeNameTextView = (TextView)findViewById(R.id.author);
         TextView collegeAddressTextView = (TextView)findViewById(R.id.quote);
         TextView collegeWebsite = (TextView)findViewById(R.id.collge_website);
@@ -79,6 +82,6 @@ public class DetailPage extends AppCompatActivity {
     //Provide Hostel Infromation and then I can do something
     private void displayCollegeHostelInfo(){
 
-    }*/
+    }
 
 }
