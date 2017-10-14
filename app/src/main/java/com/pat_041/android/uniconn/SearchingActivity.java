@@ -8,9 +8,15 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
-public class SearchingActivity extends AppCompatActivity {
+import com.pat_041.android.uniconn.definitions.SuperObjects;
+
+import java.util.ArrayList;
+
+public class SearchingActivity extends AppCompatActivity implements SearchingActivityAdapter.ListItemClickListener{
 
     private int id;
+
+    private ArrayList<SuperObjects> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +38,10 @@ public class SearchingActivity extends AppCompatActivity {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        // this will have an intent to go to the item specific activity
     }
 }
