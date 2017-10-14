@@ -9,7 +9,7 @@
 
     <ImageView android:layout_width="60dp"
         android:layout_height="60dp"
-        
+
         android:id="@+id/list_image_view"
         android:layout_gravity="left"
         />
