@@ -14,4 +14,5 @@
     <string name="article_detail_infra">Infrastructure</string>
     <string name="article_detail_fellow">Fellowships and Scholarship Opportunities</string>
     <string name="article_detail_hostel">Hostel Information</string>
+    <string name="gis_button_text">Get to know Institutes around your location.Use out GIS based Searching option.</string>
 </resources>
