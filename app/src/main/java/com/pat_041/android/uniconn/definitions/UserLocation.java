@@ -33,9 +33,11 @@ public class UserLocation implements LocationListener {
     public UserLocation(Context context) {
         mContext = context;
         try{
+            Log.v("UserLocation Error : ","What is happening oi  thiuds worL" + "");
             locationManager = (LocationManager)mContext.getSystemService(Context.LOCATION_SERVICE);
             List<String> providers = locationManager.getProviders(true);
             Location bestLocation = null;
+            Log.v("UserLocation Error : ","What is happening" + "");
             for (String provider : providers) {
                 Location l = locationManager.getLastKnownLocation(provider);
                 if (l == null) {

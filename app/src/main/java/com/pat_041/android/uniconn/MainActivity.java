@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.pat_041.android.uniconn.definitions.User;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,18 +24,24 @@ public class MainActivity extends AppCompatActivity {
                 // Send intent to SingleViewActivity
                 switch (position) {
                     case 0:
-                    case 1:
                     case 2:
                     Intent i = new Intent(getApplicationContext(), SearchingActivity.class);
                     // Pass image index
                     i.putExtra("id", position);
                     startActivity(i);
                         break;
-                    case 3:
-                        Intent in = new Intent(getApplicationContext(), ProjectSearchingActivity.class);
+                    case 1:Intent in = new Intent(getApplicationContext(), UserProfileActivity.class);
                         // Pass image index
                         in.putExtra("id", position);
+                        in.putExtra("User",(User)getIntent().getSerializableExtra("User"));
                         startActivity(in);
+                        break;
+                    case 3:
+                        Intent intent = new Intent(getApplicationContext(), ProjectSearchingActivity.class);
+                        // Pass image index
+                        intent.putExtra("id", position);
+                        startActivity(intent);
+                        break;
                 }
             }
         });

@@ -52,7 +52,7 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     public Integer[] mThumbIds = {
-            R.drawable.pic_university, R.drawable.pic_institute,
+            R.drawable.pic_university, R.drawable.user_image,
             R.drawable.pic_events,R.drawable.explore_the_world_image
     };
     public Integer[] mTextIds = {

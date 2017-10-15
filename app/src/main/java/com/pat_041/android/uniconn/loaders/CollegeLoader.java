@@ -41,6 +41,7 @@ public class CollegeLoader extends AsyncTaskLoader<List<College>> {
                     break;
                 case SearchCaseConstants.PARAMETERIZED_SEARCH:
                     list = CallAPIUtils.getStandAloneObjects(key,query);
+                    System.out.println("Size : "+list.size());
                     break;
 
             }

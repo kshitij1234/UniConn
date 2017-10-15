@@ -307,10 +307,11 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
             state = state.substring(0,state.lastIndexOf(','));
             state = state.substring(state.lastIndexOf(','));
             state = state.substring(1,state.lastIndexOf(' '));
-            state.trim();
-            Log.v("UserLocation : ",""+state);
+            state = state.trim();
+            Log.v("UserLocation:",state);
+            id=0;
             lKey = "state";
-            searchQuery(state,SearchCaseConstants.PARAMETERIZED_SEARCH);
+            searchQuery(""+state,SearchCaseConstants.PARAMETERIZED_SEARCH);
         }else{
             showErrorView();
             Log.v("UserLocation Error : ","Inside displayGISBASED");
