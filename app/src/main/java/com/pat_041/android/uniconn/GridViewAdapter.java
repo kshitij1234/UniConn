@@ -53,10 +53,10 @@ public class GridViewAdapter extends BaseAdapter {
 
     public Integer[] mThumbIds = {
             R.drawable.pic_university, R.drawable.pic_institute,
-            R.drawable.pic_events,R.drawable.pic_fellow
+            R.drawable.pic_events,R.drawable.explore_the_world_image
     };
     public Integer[] mTextIds = {
             R.string.grid_univ_text,R.string.grid_inst_text,
-            R.string.grid_event_text,R.string.grid_fellow_text
+            R.string.grid_event_text,R.string.grid_explore_projects_text
     };
 }

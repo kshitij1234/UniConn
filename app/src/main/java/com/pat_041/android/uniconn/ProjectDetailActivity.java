@@ -2,10 +2,12 @@ package com.pat_041.android.uniconn;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.Project;
@@ -18,6 +20,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
     private TextView mUserInfoTextView;
     private TextView mProjectDetailTextView;
     private Project mProject;
+    private ImageView imageView;
     private User mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,15 @@ public class ProjectDetailActivity extends AppCompatActivity {
         mProjectNameTextView=(TextView)findViewById(R.id.tv_project_name);
         mUserInfoTextView=(TextView)findViewById(R.id.tv_user_info);
         mUserNameTextView=(TextView)findViewById(R.id.tv_user_name);
+        imageView=(ImageView)findViewById(R.id.profile_image);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("UserObj",mUser);
+                startActivity(i);
+            }
+        });
         mProject = (Project)getIntent().getSerializableExtra("ProjectObj");
         mUser = (User)getIntent().getSerializableExtra("UserObj");
         populateData();

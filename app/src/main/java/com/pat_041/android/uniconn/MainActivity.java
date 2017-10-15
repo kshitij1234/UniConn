@@ -20,10 +20,21 @@ public class MainActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,View v, int position, long id){
                 // Send intent to SingleViewActivity
-                Intent i = new Intent(getApplicationContext(),SearchingActivity.class);
-                // Pass image index
-                i.putExtra("id", position);
-                startActivity(i);
+                switch (position) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    Intent i = new Intent(getApplicationContext(), SearchingActivity.class);
+                    // Pass image index
+                    i.putExtra("id", position);
+                    startActivity(i);
+                        break;
+                    case 3:
+                        Intent in = new Intent(getApplicationContext(), ProjectSearchingActivity.class);
+                        // Pass image index
+                        in.putExtra("id", position);
+                        startActivity(in);
+                }
             }
         });
     }
