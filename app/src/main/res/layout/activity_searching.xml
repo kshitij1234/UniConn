@@ -1,30 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent"
-     android:layout_width="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
         android:visibility="visible"
         tools:context="com.pat_041.android.uniconn.SearchingActivity"
         >
     </android.support.v7.widget.RecyclerView>
     <TextView
         android:id="@+id/tv_error_message_display"
-        android:textSize="22sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="@string/error_message"
+        android:textSize="22sp"
         android:visibility="invisible" />
+
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
-        android:layout_height="42dp"
         android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_gravity="center"
         android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/gis_linear_layout"
+        android:padding="30dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:text="@string/gis_button_text"
+            android:textSize="20dp"/>
+        <Button
+            android:id="@+id/detail_gis_button"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/custom_button"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="GIS"
+            android:textSize="50dp"/>
+
+    </LinearLayout>
+
 </FrameLayout>
 

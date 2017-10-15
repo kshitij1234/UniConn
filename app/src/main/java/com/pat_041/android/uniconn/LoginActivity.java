@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.pat_041.android.uniconn.definitions.Project;
 import com.pat_041.android.uniconn.definitions.User;
 
 import java.io.Serializable;
@@ -32,7 +33,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         databaseHelper = new DatabaseHandler(this);
+
+        databaseHelper.addUser(new User("jtatia", "Jai Tatia", "Admin1234","b-112,hope road","margao","Goa","cstudent","IIT Delhi","jai@gmail.com","7686432335"));
+        databaseHelper.addUser(new User("abhijit", "Abhijit Roy", "Admin1234","b-112,hope road","kanpur","UP","student","Mano School","abh@gmail.com","7686222265"));
+        databaseHelper.addUser(new User("shashwat", "Shashwat Tiwari", "Admin1234","b-112,hope road","guhawati","AP","professor","IIT Patna","shashwat@gmail.com","6486432265"));
+        databaseHelper.addUser(new User("kshitij", "Kshitij Jauhri", "Admin1234","b-112,hope road","lucknow","UP","cstudent","IIT Patna","kshitij@gmail.com","7686872265"));
+
+        databaseHelper.addProject(new Project(1,"Robotics System","robotics","Radio Frequency based remote controlled robot with wireless video camera mounted on it.","10 April, 2017","3 months","Bhopal"));
+        databaseHelper.addProject(new Project(2,"Course Management System","java","Course management system is a Java based platform which provides an interface for professors and students to interact on course related topics and also provides a staging area where all assignments can be uploaded by faculties subject-wise. Students can then download the assignments and submit their solutions thus allowing faculties to check the solutions and score them.","12 July, 2017","4 months","Bombay"));
+        databaseHelper.addProject(new Project(3,"ChatBot","machine learning","An automated machine learning based chatbot application implemented using re-inforcement learning","15 September, 2017","1 year","Kolkata"));
+        databaseHelper.addProject(new Project(4,"Biometric Sensing System","biomedical","A hardware based device which can be used to get the biometrics of a person.","21 June, 2017","7 months","Bhopal"));
 
         List<User> contacts = databaseHelper.getAllUsers();
 

@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Loader;
 import android.content.Intent;
 
+import android.provider.Settings;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,18 +22,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.College;
 import com.pat_041.android.uniconn.definitions.Event;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
+import com.pat_041.android.uniconn.definitions.UserLocation;
 import com.pat_041.android.uniconn.loaders.CollegeLoader;
 import com.pat_041.android.uniconn.loaders.EventLoader;
 
@@ -43,6 +48,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
     private int id;
     private ProgressBar mLoadingIndicator;
+    private Button mGisButton;
     private String lsearchQuery;
     private int lsearchType;
     private String lKey;
@@ -66,6 +72,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         id = intent.getExtras().getInt("id");
         mErrorView=(TextView)findViewById(R.id.tv_error_message_display);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mGisButton = (Button)findViewById(R.id.detail_gis_button);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -79,6 +86,21 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         recyclerView.setAdapter(mAdapter);
         SearchingActivityAdapter.BackgroundItemDecoration decoration = new SearchingActivityAdapter.BackgroundItemDecoration();
         //recyclerView.addItemDecoration(decoration);
+        mGisButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                LinearLayout gis_layout = (LinearLayout)findViewById(R.id.gis_linear_layout);
+                gis_layout.setVisibility(View.GONE);
+                //showAlert();
+                UserLocation userLoc= new UserLocation(SearchingActivity.this);
+                if(userLoc.isLocationEnabled()){
+                    displayGisBasedSearch(userLoc);
+                }else{
+                    showErrorView();
+                    Log.v("UserLocation Error : ","OnClick Error");
+                }
+            }
+        });
 
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(
                 recyclerView.getContext(),
@@ -88,6 +110,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
         collegeCallbacks = new CollegeCallbacks(this,getLoaderManager());
         eventCallbacks = new EventCallbacks(this,getLoaderManager());
+
     }
     private void showJsonDataView() {
         // First, make sure the error is invisible
@@ -108,7 +131,6 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -227,15 +249,11 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
     private class CollegeCallbacks implements LoaderManager.LoaderCallbacks<List<College>> {
 
         Context context;
-
         public CollegeCallbacks(Context context, LoaderManager loaderManager) {
             this.context = context;
             loaderManager.initLoader(0, null, this);
 
         }
-
-
-
         @Override
         public Loader<List<College>> onCreateLoader(int id, Bundle args) {
             System.out.println("inside oncreateloader");
@@ -258,6 +276,8 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         @Override
         public void onLoadFinished(Loader<List<College>> loader, List<College> data) {
             System.out.println("inside load finished");
+            LinearLayout gis_layout = (LinearLayout)findViewById(R.id.gis_linear_layout);
+            gis_layout.setVisibility(View.GONE);
             list =(ArrayList<? extends SuperObjects>) data;
             mAdapter.setList(list);
             if(data==null)
@@ -279,6 +299,35 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         }
     }
 
+    private void displayGisBasedSearch(UserLocation userLoc){
+        if(userLoc.locate){
+            System.out.println("The value of the address is  :: "+userLoc.userAddress);
+            Log.v("UserLocation : ",""+userLoc.userAddress);
+        }else{
+            showErrorView();
+            Log.v("UserLocation Error : ","Inside displayGISBASED");
+        }
+    }
+
+    private void showAlert() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Enable Location")
+                .setMessage("Your Locations Settings is set to 'Off'.\nPlease Enable Location to " +
+                        "use this app")
+                .setPositiveButton("Location Settings", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(myIntent);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    }
+                });
+        dialog.show();
+    }
     private class EventCallbacks implements LoaderManager.LoaderCallbacks<List<Event>> {
 
         Context context;
