@@ -18,6 +18,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         user = (User)getIntent().getSerializableExtra("User");
         userInfo = (TextView)findViewById(R.id.userInfo);
+        if(user!=null)
         user_info = "NAME : "+user.getName()+"\nType : "+user.getType()+"\nCity : "+user.getCity()+"\nState : "+user.getState()+"\nEmail : "+user.getEmail();
         userInfo.setText(user_info);
     }

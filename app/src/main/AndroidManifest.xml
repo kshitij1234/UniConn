@@ -82,7 +82,13 @@
                 android:value=".ProjectDetailActivity" />
             >
         </activity>
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".UserProfileActivity"
+            android:parentActivityName=".ProjectDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ProjectDetailActivity" />
+            >
+        </activity>
     </application>
 
 </manifest>
