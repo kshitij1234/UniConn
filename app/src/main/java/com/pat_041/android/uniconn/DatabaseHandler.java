@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "UniConn.db";
@@ -64,7 +64,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_INSTITUTE + " TEXT," + KEY_EMAIL + " TEXT," + KEY_PH_NO + " TEXT"  +  ")";
 
         String CREATE_PROJECTS_TABLE = "CREATE TABLE " + TABLE_PROJECTS + "("
-                + PRO_ID + " INTEGER PRIMARY KEY," + KEY_ID + " INTEGER,"+ PRO_NAME + " TEXT,"
+                + PRO_ID + " INTEGER PRIMARY KEY," + KEY_ID + " INTEGER,"+ PRO_NAME + " TEXT UNIQUE,"
                 + PRO_TAG + " TEXT," + PRO_SDATE + " TEXT,"+ PRO_DURATION + " TEXT,"+ PRO_LOCATION + " TEXT," + PRO_INFO + " TEXT,"  +
                 "FOREIGN KEY("+KEY_ID+")"+"REFERENCES "+TABLE_USERS+"("+KEY_ID+")"+ ")";
         db.execSQL(CREATE_USERS_TABLE);
@@ -86,7 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, user.getName()); // User Name
-        values.put(KEY_UNAME, user.getName()); // User Name
+        values.put(KEY_UNAME, user.getUname()); // User Name
         values.put(KEY_PASS, user.getPassword());
         values.put(KEY_ADDRESS, user.getAddress());
         values.put(KEY_CITY, user.getCity());
@@ -102,19 +102,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    public User getUser(String uname, String pass) {
+    public User getUser(String uname) {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_USERS, new String[] { KEY_ID, KEY_UNAME,
-                        KEY_NAME, KEY_PASS, KEY_ADDRESS, KEY_CITY, KEY_STATE, KEY_TYPE, KEY_INSTITUTE, KEY_EMAIL, KEY_PH_NO }, KEY_UNAME + "=?" + " AND " + KEY_PASS + "=?",
-                new String[] { uname, pass }, null,null,null,null);
-        if (cursor != null)
+        User myUser = new User();
+        System.out.println(uname+"  --  ");
+        Cursor cursor = db.query(TABLE_USERS, new String[] { KEY_ID, KEY_UNAME, KEY_NAME, KEY_PASS, KEY_ADDRESS, KEY_CITY, KEY_STATE, KEY_TYPE, KEY_INSTITUTE, KEY_EMAIL, KEY_PH_NO }, KEY_UNAME + "=?", new String[] { uname }, null,null,null,null);
+        if (cursor != null) {
             cursor.moveToFirst();
-
-        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),cursor.getString(3), cursor.getString(4),
-                cursor.getString(5), cursor.getString(6),cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10));
-        // return User
-        return user;
+            do {
+                myUser = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6),cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10));
+            } while (cursor.moveToNext());
+            System.out.println(myUser);
+        }
+        return myUser;
     }
 
     public User getUser(int c_id) {

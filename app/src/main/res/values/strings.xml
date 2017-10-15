@@ -14,5 +14,22 @@
     <string name="article_detail_infra">Infrastructure</string>
     <string name="article_detail_fellow">Fellowships and Scholarship Opportunities</string>
     <string name="article_detail_hostel">Hostel Information</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_uname">UserName</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_uname">This Username is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="passwordlabel">Enter Password</string>
+    <string name="usernamelabel">Enter UserName</string>
+    <string name="logintext">Sign In</string>
     <string name="gis_button_text">Get to know Institutes around your location.Use out GIS based Searching option.</string>
 </resources>

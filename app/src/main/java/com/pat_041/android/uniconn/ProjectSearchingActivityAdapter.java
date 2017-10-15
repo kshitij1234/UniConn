@@ -15,7 +15,7 @@ import com.pat_041.android.uniconn.definitions.SuperObjects;
 
 import java.util.ArrayList;
 
-public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<ProjectSearchingActivityAdapter.ItemViewHolder>{
+public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<ProjectSearchingActivityAdapter.ItmViewHolder>{
 
     private static final String TAG = SearchingActivityAdapter.class.getSimpleName();
 
@@ -38,7 +38,7 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Projec
     }
 
     @Override
-    public ProjectSearchingActivityAdapter.ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ProjectSearchingActivityAdapter.ItmViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
         int layout = R.layout.project_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -46,14 +46,15 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Projec
         shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layout, viewGroup, shouldAttachToParentImmediately);
-        ItemViewHolder viewHolder = new ItemViewHolder(view);
+        ItmViewHolder viewHolder = new ItmViewHolder(view);
 
         return viewHolder;
     }
 
+
     @Override
-    public void onBindViewHolder(ProjectSearchingActivityAdapter.ItemViewHolder holder, int position) {
-        //Log.d(TAG, "#" + position);
+    public void onBindViewHolder(ProjectSearchingActivityAdapter.ItmViewHolder holder, int position) {
+        Log.d(TAG, "#" + position);
 
         holder.bind(position);
     }
@@ -69,24 +70,27 @@ public class ProjectSearchingActivityAdapter extends RecyclerView.Adapter<Projec
         this.notifyDataSetChanged();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ItmViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
         CircleImageView image;
         TextView heading;
         TextView tag;
 
-        public ItemViewHolder(View itemView) {
+        public ItmViewHolder(View itemView) {
             super(itemView);
             image = (CircleImageView) itemView.findViewById(R.id.project_image);
             heading = (TextView) itemView.findViewById(R.id.project_heading);
             tag = (TextView) itemView.findViewById(R.id.project_tag);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            System.out.println("item clicked");
             int clickedPosition = getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
+
         }
 
 

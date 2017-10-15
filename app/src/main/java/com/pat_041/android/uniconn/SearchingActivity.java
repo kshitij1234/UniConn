@@ -86,6 +86,9 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
         recyclerView.setAdapter(mAdapter);
         SearchingActivityAdapter.BackgroundItemDecoration decoration = new SearchingActivityAdapter.BackgroundItemDecoration();
         //recyclerView.addItemDecoration(decoration);
+
+
+
         mGisButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -110,6 +113,14 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
         collegeCallbacks = new CollegeCallbacks(this,getLoaderManager());
         eventCallbacks = new EventCallbacks(this,getLoaderManager());
+
+        switch(id)
+        {
+            case 2:
+                mGisButton.setVisibility(View.GONE);
+                findViewById(R.id.gistext).setVisibility(View.GONE);
+                break;
+        }
 
     }
     private void showJsonDataView() {

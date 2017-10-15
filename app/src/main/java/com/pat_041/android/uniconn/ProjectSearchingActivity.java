@@ -199,9 +199,10 @@ public class ProjectSearchingActivity extends AppCompatActivity implements Loade
     @Override
     public void onListItemClick(int clickedItemIndex) {
         // create intent for next activity
+        System.out.println("Why not heree");
         Project project=list.get(clickedItemIndex);
         User user=mdbhelper.getUser(project.getCid());
-        Intent i = new Intent();
+        Intent i = new Intent(ProjectSearchingActivity.this, ProjectDetailActivity.class);
         i.putExtra("User",mLoggedInUser);
         i.putExtra("UserObj",user);
         i.putExtra("ProjectObj",project);

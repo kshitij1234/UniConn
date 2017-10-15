@@ -36,7 +36,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
+                Intent i = new Intent(ProjectDetailActivity.this,UserDetailActivity.class);
                 i.putExtra("UserObj",mUser);
                 startActivity(i);
             }
@@ -48,14 +48,17 @@ public class ProjectDetailActivity extends AppCompatActivity {
         mContributeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setType("plain/text");
-                sendIntent.setData(Uri.parse(mUser.getEmail()));
+                /*Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setType("text/plain");
+                //sendIntent.setData(Uri.parse(mUser.getEmail()));
                 sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
                 sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { mLoggedInUser.getEmail() });
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Contribution Request for "+mProject.getName());
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Dear "+mUser.getName()+",\n I am very much interested in your project idea and would like to contribute.\n Thank you. \n ");
-                startActivity(sendIntent);
+                startActivity(sendIntent);*/
+                Intent mailClient = new Intent(Intent.ACTION_VIEW);
+                mailClient.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivity");
+                startActivity(mailClient);
             }
         });
     }
@@ -63,7 +66,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         mProjectNameTextView.setText(mProject.getName());
         mUserNameTextView.setText(mUser.getName());
         mUserInfoTextView.setText(mUser.getType()+"\n"+mUser.getInstitute());
-        mProjectDetailTextView.append("PROJECT TAG : "+mProject.getTag()+"\n\n");
+        mProjectDetailTextView.setText("PROJECT TAG : "+mProject.getTag()+"\n\n");
         mProjectDetailTextView.append("Start Date : "+mProject.getSdate()+"\n\n");
         mProjectDetailTextView.append("Project Duration : "+mProject.getDuration()+"\n\n");
         mProjectDetailTextView.append("Location : "+mProject.getLocation()+"\n\n");
