@@ -3,11 +3,7 @@ package com.pat_041.android.uniconn;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +16,6 @@ import com.pat_041.android.uniconn.definitions.SuperObjects;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static java.security.AccessController.getContext;
 
 public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActivityAdapter.ItemViewHolder>{
 
@@ -69,7 +63,7 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        Log.d(TAG, "#" + position);
+        //Log.d(TAG, "#" + position);
 
         holder.bind(position);
     }
