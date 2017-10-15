@@ -1,4 +1,7 @@
 <resources>
+    <string name="error_message">Could not fetch the data. Please check your internet connectivity and try again !!</string>
+    <string name="colleges">Colleges</string>
+    <string name="events">Events</string>
     <string name="app_name">UniConn</string>
     <string name="grid_event_text">Events</string>
     <string name="grid_univ_text">Universities</string>

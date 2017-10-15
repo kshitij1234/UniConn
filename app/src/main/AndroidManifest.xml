@@ -11,10 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchingActivity"></activity>
-        <activity android:name=".DetailPage">
+        <activity android:name=".SearchingActivity" android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"></meta-data></activity>
+        <activity android:name=".DetailPage"
+            android:label="@string/colleges"
+            android:parentActivityName=".SearchingActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"></meta-data>
         </activity>
-        <activity android:name=".EventsDetail"/>
+        <activity android:name=".EventsDetail"
+            android:label="@string/events"
+            android:parentActivityName=".SearchingActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity"></meta-data>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +34,6 @@
             </intent-filter>
 
         </activity>
-        
     </application>
 
 </manifest>
