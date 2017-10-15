@@ -99,7 +99,7 @@ public class CallAPIUtils {
     public JSONObject loadJSONfromAsset(Context context) throws JSONException {
         String json = null;
         try {
-            InputStream is = context.getAssets().open("yourfilename.json");
+            InputStream is = context.getAssets().open("events.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

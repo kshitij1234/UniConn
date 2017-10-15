@@ -68,7 +68,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int itemThatWasClickedId = item.getItemId();
-        if (itemThatWasClickedId == R.id.action_search) {
+        if (itemThatWasClickedId == R.id.filter_search) {
             AlertDialog.Builder builder = new AlertDialog.Builder(SearchingActivity.this);
             // Get the layout inflater
             LayoutInflater inflater = SearchingActivity.this.getLayoutInflater();
