@@ -30,7 +30,6 @@ public class ConnectionUtils {
     }
 
     public static JSONObject makeConnection(String s){
-
         URL url = makeURL(s);
         String jsonResponse = null;
         if(url==null)
@@ -56,7 +55,7 @@ public class ConnectionUtils {
     private static String makeHttpRequest(URL url)throws IOException{
 
         String json="";
-
+System.out.println("here");
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         try{
@@ -64,11 +63,18 @@ public class ConnectionUtils {
             urlConnection.setReadTimeout(10000);
             urlConnection.setConnectTimeout(15000);
             urlConnection.setRequestMethod("GET");
+            System.out.println("gepirgeignoiwng");
             urlConnection.connect();
+            System.out.println("why the hell \n"+urlConnection.getResponseCode());
 
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 json = readFromStream(inputStream);
+                try {
+                    System.out.println(json);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             }else {
                 Log.e("ConnectionUtils", "Error response code: " + urlConnection.getResponseCode());
             }
