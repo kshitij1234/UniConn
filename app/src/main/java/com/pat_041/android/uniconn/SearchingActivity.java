@@ -109,6 +109,7 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
                     return true;
                 System.out.println("inside submit");
                 // we have a query baby!!!!
+                query=(""+query.charAt(0)).toUpperCase()+query.substring(1).toLowerCase();
                 searchQuery(query, SearchCaseConstants.NORMAL_SEARCH);
                 searchView.clearFocus();
                 return true;
@@ -141,8 +142,9 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
                         public void onClick(DialogInterface dialog, int id) {
                             EditText parameterView=(EditText)v.findViewById(R.id.parameter);
                             EditText valueView= (EditText)v.findViewById(R.id.value);
-                            String parameter=parameterView.getText().toString();
+                            String parameter=parameterView.getText().toString().toLowerCase();
                             String value=valueView.getText().toString();
+                            value=(value.charAt(0)+"").toUpperCase()+value.substring(1).toLowerCase();
                             // Add searching over here
                             lKey = parameter;
                             searchQuery(value,SearchCaseConstants.PARAMETERIZED_SEARCH);
