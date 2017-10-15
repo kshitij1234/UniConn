@@ -2,13 +2,14 @@ package com.pat_041.android.uniconn.definitions;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Main Object for  The returned University
  */
 
-public class College extends SuperObjects {
+public class College extends SuperObjects implements Serializable{
 
     public int id;
 
@@ -39,7 +40,7 @@ public class College extends SuperObjects {
     public String longitude;
     //Not Listed
     public String management;
-    //4 - Need More Info On Hostels
+    //3 - Need More Info On Hostels
     public boolean hostelAvailable;
     //2
     public boolean scholarshipAvailable;
@@ -47,9 +48,9 @@ public class College extends SuperObjects {
     public boolean fellowShipAvailable;
     //2
     public ArrayList<String> dept;
-    //3
+    //2
     public ArrayList<String> course_level;
-    //3
+    //2
     public ArrayList<String> Infrastructure;
 
     public College(int id) {

@@ -121,7 +121,7 @@ public class CallAPIUtils {
         return obj;
     }
 
-    public List<Event> getListOfEvents(Context context) throws JSONException {
+    public ArrayList<Event> getListOfEvents(Context context) throws JSONException {
         JSONArray jsonArray = null;
         jsonArray = loadJSONfromAsset(context).getJSONArray("records");
         ArrayList<Event> arrayList = new ArrayList<>();
@@ -138,8 +138,48 @@ public class CallAPIUtils {
             event.setInfo(obj.getString("info"));
             event.setImg(obj.getString("img"));
             event.setLink(obj.getString("link"));
+            if (obj != null)
             arrayList.add(event);
         }
         return arrayList;
+    }
+
+    public ArrayList<Event> getListOfEvents(Context context,String param) throws JSONException {
+        ArrayList<Event> arrayList = new ArrayList<>();
+        ArrayList<Event> result = new ArrayList<>();
+        arrayList = getListOfEvents(context);
+            for (Event e : arrayList){
+                if (e.getCity().equals(param) || e.getState().equals(param) || e.getName().equals(param)){
+                    result.add(e);
+                }
+            }
+            return result;
+        }
+
+        public ArrayList<Event> getListOfEvents(Context context, String key, String value) throws JSONException {
+            ArrayList<Event> arrayList = new ArrayList<>();
+            ArrayList<Event> result = new ArrayList<>();
+            switch (key){
+                case "name":
+                    for (Event e : arrayList){
+                        if (e.getName().equals(value))
+                            result.add(e);
+                    }
+                    break;
+
+                case "city":
+                    for (Event e : arrayList){
+                        if (e.getCity().equals(value))
+                            result.add(e);
+                    }
+                    break;
+                case "state":
+                    for (Event e : arrayList){
+                        if (e.getState().equals(value))
+                            result.add(e);
+                    }
+                    break;
+            }
+            return result;
     }
 }
