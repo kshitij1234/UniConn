@@ -301,8 +301,16 @@ public class SearchingActivity extends AppCompatActivity implements SearchingAct
 
     private void displayGisBasedSearch(UserLocation userLoc){
         if(userLoc.locate){
-            System.out.println("The value of the address is  :: "+userLoc.userAddress);
-            Log.v("UserLocation : ",""+userLoc.userAddress);
+            //System.out.println("The value of the address is  :: "+userLoc.userAddress);
+            //Log.v("UserLocation : ",""+userLoc.userAddress);
+            String state = userLoc.userAddress;
+            state = state.substring(0,state.lastIndexOf(','));
+            state = state.substring(state.lastIndexOf(','));
+            state = state.substring(1,state.lastIndexOf(' '));
+            state.trim();
+            Log.v("UserLocation : ",""+state);
+            lKey = "state";
+            searchQuery(state,SearchCaseConstants.PARAMETERIZED_SEARCH);
         }else{
             showErrorView();
             Log.v("UserLocation Error : ","Inside displayGISBASED");
