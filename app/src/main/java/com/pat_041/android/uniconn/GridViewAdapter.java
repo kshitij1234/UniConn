@@ -46,8 +46,8 @@ public class GridViewAdapter extends BaseAdapter {
                 : convertView);
 
         ((ImageView)gridLinearLayout.findViewById(R.id.image_grid)).setImageResource(mThumbIds[position]);
-        ((TextView)gridLinearLayout.findViewById(R.id.grid_text)).setText(""+mTextIds[position].toString());
-        Log.v("Inside Grid View : ","I am Returning from Grid View : "+mTextIds[position].toString());
+        ((TextView)gridLinearLayout.findViewById(R.id.grid_text)).setText(""+mContext.getString(mTextIds[position]));
+        //Log.v("Inside Grid View : ","I am Returning from Grid View : "+mTextIds[position]);
         return gridLinearLayout;
     }
 

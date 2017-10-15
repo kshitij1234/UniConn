@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity {
         GridView gridview = (GridView) findViewById(R.id.gridview);
         Log.v("Inside Main Activity : ","I Have entered the main View Going to GridViewAdapter");
         gridview.setAdapter(new GridViewAdapter(this));
-        /*gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,View v, int position, long id){
                 // Send intent to SingleViewActivity
-                //Intent i = new Intent(getApplicationContext(),Set the class name here);
+                Intent i = new Intent(getApplicationContext(),SearchingActivity.class);
                 // Pass image index
-                //i.putExtra("id", position);
-                //startActivity(i);
+                i.putExtra("id", position);
+                startActivity(i);
             }
-        });*/
+        });
     }
 }

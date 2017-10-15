@@ -22,7 +22,6 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
 
     final private ListItemClickListener mOnClickListener;
 
-    private static int viewHolderCount;
     private int mNumberItems;
 
     private ArrayList<SuperObjects> list;
@@ -39,7 +38,6 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
         list = l;
         mNumberItems = numberOfItems;
         mOnClickListener = listener;
-        viewHolderCount = 0;
     }
 
     @Override
@@ -82,15 +80,15 @@ public class SearchingActivityAdapter extends RecyclerView.Adapter<SearchingActi
             itemView.setOnClickListener(this);
         }
 
-
-
         @Override
         public void onClick(View v) {
-            // create an intent to go to the corresponding item page
+            // create an intent to go to the corresponding item page in listener in Searching Activity
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
         }
 
         public void bind(int position) {
-            
+
             SuperObjects object = list.get(position);
             TextDrawable drawable = TextDrawable.builder()
                     .buildRoundRect(object.getHeading().toUpperCase().charAt(0)+"", Color.RED, 10); // radius in px
