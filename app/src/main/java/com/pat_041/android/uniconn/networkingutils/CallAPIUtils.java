@@ -76,4 +76,5 @@ public class CallAPIUtils {
         basicInformationOfCollegesUrl+="&filters[state]="+cityName;
         return getStandAloneObjects(basicInformationOfCollegesUrl);
     }
+
 }
