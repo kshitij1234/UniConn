@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.app.SearchManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.pat_041.android.uniconn.definitions.Project;
 import com.pat_041.android.uniconn.definitions.SuperObjects;
+import com.pat_041.android.uniconn.definitions.User;
 import com.pat_041.android.uniconn.loaders.CollegeLoader;
 import com.pat_041.android.uniconn.loaders.ProjectLoader;
 
@@ -39,14 +41,14 @@ public class ProjectSearchingActivity extends AppCompatActivity implements Loade
     private RecyclerView recyclerView;
     private TextView mErrorView;
     private ProjectSearchingActivityAdapter mAdapter;
-
+    private User mLoggedInUser;
     private DatabaseHandler mdbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_searching);
-
+        mLoggedInUser = (User)getIntent().getSerializableExtra("User");
         mdbhelper = new DatabaseHandler(this);
 
 
@@ -197,5 +199,12 @@ public class ProjectSearchingActivity extends AppCompatActivity implements Loade
     @Override
     public void onListItemClick(int clickedItemIndex) {
         // create intent for next activity
+        Project project=list.get(clickedItemIndex);
+        User user=mdbhelper.getUser(project.getCid());
+        Intent i = new Intent();
+        i.putExtra("User",mLoggedInUser);
+        i.putExtra("UserObj",user);
+        i.putExtra("ProjectObj",project);
+        startActivity(i);
     }
 }

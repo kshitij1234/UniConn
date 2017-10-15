@@ -21,6 +21,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
     private TextView mProjectDetailTextView;
     private Project mProject;
     private ImageView imageView;
+    private User mLoggedInUser;
     private User mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         });
         mProject = (Project)getIntent().getSerializableExtra("ProjectObj");
         mUser = (User)getIntent().getSerializableExtra("UserObj");
+        mLoggedInUser=(User)getIntent().getSerializableExtra("User");
         populateData();
         mContributeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +52,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
                 sendIntent.setType("plain/text");
                 sendIntent.setData(Uri.parse(mUser.getEmail()));
                 sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "test@gmail.com" });
+                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { mLoggedInUser.getEmail() });
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Contribution Request for "+mProject.getName());
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Dear "+mUser.getName()+",\n I am very much interested in your project idea and would like to contribute.\n Thank you. \n ");
                 startActivity(sendIntent);
