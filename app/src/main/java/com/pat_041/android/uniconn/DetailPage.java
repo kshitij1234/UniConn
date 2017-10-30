@@ -91,9 +91,9 @@ public class DetailPage extends AppCompatActivity {
 
     public void openMapIntent() {
         String uri = "http://maps.google.com/maps?q=loc:" + mCollege.getLatitute() + "," + mCollege.getLongitude() + " (" + mCollege.getAddress() + ")";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        if (i.resolveActivity(getPackageManager()) != null) {
+            startActivity(i);
         }
     }
 
