@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("id", position);
                     startActivity(i);
                         break;
-                    case 1:Intent in = new Intent(getApplicationContext(), UserProfileActivity.class);
+                    case 1:Intent inten = new Intent(getApplicationContext(), UserProfileActivity.class);
                         // Pass image index
-                        in.putExtra("id", position);
-                        in.putExtra("User",(User)getIntent().getSerializableExtra("User"));
-                        startActivity(in);
+                        inten.putExtra("id", position);
+                        inten.putExtra("User",(User)getIntent().getSerializableExtra("User"));
+                        startActivity(inten);
                         break;
                     case 3:
                         Intent intent = new Intent(getApplicationContext(), ProjectSearchingActivity.class);
