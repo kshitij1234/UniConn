@@ -1,5 +1,5 @@
 <resources>
-    <string name="error_message">Could not fetch the data. Please check your internet connectivity and try again !!</string>
+    <string name="error_message">Could not fetch the data. Please check your internet connection and try again !!</string>
     <string name="colleges">Colleges</string>
     <string name="events">Events</string>
     <string name="app_name">UniConn</string>
@@ -16,7 +16,7 @@
     <string name="article_detail_hostel">Hostel Information</string>
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings that are related to login -->
     <string name="prompt_uname">UserName</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -31,5 +31,5 @@
     <string name="passwordlabel">Enter Password</string>
     <string name="usernamelabel">Enter UserName</string>
     <string name="logintext">Sign In</string>
-    <string name="gis_button_text">Get to know Institutes around your location.Use out GIS based Searching option.</string>
+    <string name="gis_button_text">Get to know Institutes around your location. Use our GIS based Searching option.</string>
 </resources>
